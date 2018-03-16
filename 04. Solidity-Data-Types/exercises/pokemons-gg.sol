@@ -2,38 +2,37 @@ pragma solidity ^0.4.21;
 
 contract Courses   {
     
-//   struct Instructor {
-//         uint age;
-//         string fName;
-//         string lName;
-//     }
-    
-//     mapping (address => Instructor) instructors;
-    
-//     function setInstructor(address _address, uint _age, string _fName, string _lName) public {
-//         var instructor = instructors[_address];
-        
-//         instructor.age = _age;
-//         instructor.fName = _fName;
-//         instructor.lName = _lName;
-        
-//     }
-    
-//     function getInstructor(address _address) view public returns (uint, string, string) {
-//         return (instructors[_address].age, instructors[_address].fName, instructors[_address].lName);
-//     }
-    
     enum PokemonChoice { a,b,c,d,e,f,g }
     
-    mapping (address => Pokemon[]) public ownerPokemons;
+    mapping (address => PokemonChoice[])  ownerPokemons;
+    mapping (address => uint) lastPokemonCath;
+    mapping (uint8 => address[]) pokemonOwners;
     
-    struct Pokemon {
-        PokemonChoice name;
+    modifier inputMinimumTimeout {
+        require(now - lastPokemonCath[msg.sender] > 15 seconds);
+        _;
     }
     
-    function catchPokemon(PokemonChoice pokemonCatched){
-        ownerPokemons[msg.sender] = [ Pokemon(PokemonChoice.a)];
+    modifier noDuplicatesPokemons (PokemonChoice _tryPokemon) {
+        PokemonChoice[] storage userCurrentPokemons = ownerPokemons[msg.sender];
+        
+        for (uint8 i = 0; i < userCurrentPokemons.length; i +=1) {
+            require(userCurrentPokemons[i] != _tryPokemon);
+        }
+        _;
     }
     
+    function catchPokemon (PokemonChoice _pokemon) public inputMinimumTimeout noDuplicatesPokemons(_pokemon){
+        ownerPokemons[msg.sender].push(_pokemon);
+        lastPokemonCath[msg.sender] = now;
+        pokemonOwners[uint8(_pokemon)].push(msg.sender);
+    }
     
+    function getMyPokemons () public view returns (PokemonChoice[]) {
+        return ownerPokemons[msg.sender];
+    }
+    
+    function getPokemonOwners(PokemonChoice _pokemon) returns(address[]) {
+        return pokemonOwners[uint8(_pokemon)];
+    }
 }
