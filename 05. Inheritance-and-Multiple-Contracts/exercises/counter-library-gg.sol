@@ -40,19 +40,19 @@ contract Owned {
 }
 
 contract Custom is Owned{
-    
+    using SafeMath for int256;
     
     int256 public customNumber;
     uint256 lastStateChange;
     
     function changeCustomNumber () public {
         require(msg.sender == owner);
-        customNumber = SafeMath.add(customNumber, int256(now) % 256);
+        customNumber = customNumber.add( int256(now) % 256);
         if(lastStateChange == 0){
             lastStateChange = now - 1;
         }
-        customNumber = SafeMath.multiply(customNumber, int256(now - lastStateChange));
-        customNumber = SafeMath.substract(customNumber, int256(block.gaslimit));
+        customNumber = customNumber.multiply( int256(now - lastStateChange));
+        customNumber = customNumber.substract( int256(block.gaslimit));
         
         lastStateChange = now;
     }
