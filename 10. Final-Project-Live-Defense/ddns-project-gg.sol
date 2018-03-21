@@ -1,11 +1,11 @@
 pragma solidity 0.4.19;
 
 contract DDNS {
-    struct Receipt{
-        uint amountPaidWei;
-        uint timestamp;
-        uint expires;
-    }
+    // struct Receipt{
+    //     uint amountPaidWei;
+    //     uint timestamp;
+    //     uint expires;
+    // }
     
     struct Domain{
         bytes name;
@@ -14,9 +14,10 @@ contract DDNS {
         uint expires;
     }
     
-    modifier AvailableDomain (bytes _domain) {
-        require(domainsInfo[_domain].owner != 0);
-        require(domainsInfo[_domain].expires < now);
+    modifier AvailableToBuy (bytes _domain) {
+        if(msg.sender != domainsInfo[_domain].owner){
+            require(domainsInfo[_domain].expires < now);
+        }
         _;
     }
     
@@ -33,25 +34,30 @@ contract DDNS {
         }
     }
     
+    modifier DomainNameRequirements (bytes _domain){
+        require(_domain.length >= 5);
+        _;
+    }
+    
     mapping(bytes => Domain) domainsInfo;
     mapping(address => Domain[]) ownerDomains;
     
     //This will create an automatic getter with 2 arguments: address and index of receipt
-    mapping(address => Receipt[]) public receipts;
+    // mapping(address => Receipt[]) public receipts;
     
     //the domain is bytes, because string is UTF-8 encoded and we cannot get its length
     //the IP is bytes4 because it is more efficient in storing the sequence
-    function register(bytes _domain, bytes4 _ip) public payable AvailableDomain(_domain) PaymentHandler{
+    function register(bytes _domain, bytes4 _ip) public payable AvailableToBuy(_domain) PaymentHandler{
         var domain = Domain({name: _domain, ip: _ip, owner: msg.sender, expires: now + 1 years });
         ownerDomains[msg.sender].push(domain);
         domainsInfo[_domain] = domain;
     }
     
-    function edit(bytes domain, bytes4 newIp) public {}
+    // function edit(bytes domain, bytes4 newIp) public {}
     
-    function transferDomain(bytes domain, address newOwner) public {}
+    // function transferDomain(bytes domain, address newOwner) public {}
     
-    function getIP(bytes domain) public view returns (bytes4) {}
+    // function getIP(bytes domain) public view returns (bytes4) {}
     
-    function getPrice(bytes domain) public view returns (uint) {}
+    // function getPrice(bytes domain) public view returns (uint) {}
 }
