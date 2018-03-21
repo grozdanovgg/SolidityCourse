@@ -39,11 +39,18 @@ contract DDNS {
         _;
     }
     
+    modifier OnlyDomainOwner (bytes _domain) {
+        require(msg.sender == domainsInfo[_domain].owner);
+        _;
+    }
+    
     mapping(bytes => Domain) domainsInfo;
     mapping(address => Domain[]) ownerDomains;
     
     //This will create an automatic getter with 2 arguments: address and index of receipt
     // mapping(address => Receipt[]) public receipts;
+    
+    address contactOwner;
     
     //the domain is bytes, because string is UTF-8 encoded and we cannot get its length
     //the IP is bytes4 because it is more efficient in storing the sequence
@@ -53,7 +60,9 @@ contract DDNS {
         domainsInfo[_domain] = domain;
     }
     
-    // function edit(bytes domain, bytes4 newIp) public {}
+     function edit(bytes _domain, bytes4 _newIp) public OnlyDomainOwner(_domain){
+         domainsInfo[_domain].ip = _newIp;
+     }
     
     // function transferDomain(bytes domain, address newOwner) public {}
     
