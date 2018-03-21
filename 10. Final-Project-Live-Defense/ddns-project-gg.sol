@@ -60,11 +60,13 @@ contract DDNS {
         domainsInfo[_domain] = domain;
     }
     
-     function edit(bytes _domain, bytes4 _newIp) public OnlyDomainOwner(_domain){
-         domainsInfo[_domain].ip = _newIp;
+    function edit(bytes _domain, bytes4 _newIp) public OnlyDomainOwner(_domain){
+        domainsInfo[_domain].ip = _newIp;
      }
     
-    // function transferDomain(bytes domain, address newOwner) public {}
+    function transferDomain(bytes _domain, address _newOwner) public OnlyDomainOwner(_domain) {
+        domainsInfo[_domain].owner = _newOwner;
+    }
     
     // function getIP(bytes domain) public view returns (bytes4) {}
     
