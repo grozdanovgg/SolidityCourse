@@ -47,6 +47,11 @@ contract DDNS {
         _;
     }
     
+    modifier OnlyContractOwner (){
+        require(msg.sender == contractOwner);
+        _;
+    }
+    
     mapping(bytes => Domain) domainsInfo;
     mapping(address => Domain[]) ownerDomains;
     mapping(address => Receipt[]) public receipts;
@@ -56,7 +61,7 @@ contract DDNS {
     event LogDomainChangeIp(bytes4 indexed _oldIp, bytes4 indexed _newIp, bytes indexed _domain);
     
     uint pricePerDomainYear = 1 ether;
-    address contactOwner;
+    address contractOwner;
     
     function register(bytes _domain, bytes4 _ip) public payable AvailableToBuy(_domain) DomainNameRequirements(_domain) PaymentHandler(pricePerDomainYear){
         var domain = Domain({name: _domain, ip: _ip, owner: msg.sender, expires: now + 1 years });
@@ -82,6 +87,11 @@ contract DDNS {
     function getUserReceipts(address _owner) public view returns(Receipt[]){
         var receipt = receipts[_owner];
         return receipt;
+    }
+    
+    function withdraw() public OnlyContractOwner {
+        require(this.balance > 0);
+        msg.sender.transfer(this.balance);
     }
     
     // function getPrice(bytes domain) public view returns (uint) {}
