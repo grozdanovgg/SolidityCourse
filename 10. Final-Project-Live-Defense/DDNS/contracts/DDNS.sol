@@ -1,30 +1,25 @@
 pragma solidity 0.4.19;
 
-import "./ddns-registerer-library.sol";
+import "./DDNSRegisterer.sol";
+import "./DDNSInterface.sol";
 
-contract DDNS {
-    using DDNSRegisterer for DDNSRegisterer.Domain;
+contract DDNS is DDNSInterface {
+    using DDNSRegisterer for DDNSRegisterer.DomainsData;
     
-    DDNSRegisterer.Domain domains;
-    
-    struct Receipt{
-        uint amountPaidWei;
-        uint timestamp;
-        uint expires;
-    }
+    DDNSRegisterer.DomainsData domains;
     
     event LogDomainRegistered (address indexed by, bytes domain);
-    event LogDomainTransfered (address indexed from, address to, bytes indexed domain);
-    event LogDomainChangeIp (bytes4 indexed oldIp, bytes4 indexed newIp, bytes indexed domain);
+    event LogDomainTransfered (address indexed from, address to, bytes  domain);
+    event LogDomainChangeIp (bytes4 indexed oldIp, bytes4 indexed newIp, bytes domain);
     event ContractTokensWithdrawn (uint tokensAmmount, uint date);
     
     modifier AvailableToBuy (bytes _domain) {
-        DDNSRegisterer.Domain storage domainData = domains.domainsInfo[_domain];
+        DDNSRegisterer.Domain memory domainData = domains.domainsInfo[_domain];
         if(msg.sender != domainData.owner){
             require(domainData.expires < now);
             assert(domainData.starts < now);
         }
-        _;
+        _;                     
     }
     
     modifier PaymentHandler (bytes _domain) {
@@ -46,7 +41,6 @@ contract DDNS {
         
         assert(amountPaidWei > 0);
         assert(expires> now && expires > 0);
-        
         receipts[msg.sender].push(Receipt({amountPaidWei: amountPaidWei, timestamp: now, expires: expires}));
     }
     
@@ -65,8 +59,6 @@ contract DDNS {
         _;
     }
     
-    mapping(address => Receipt[]) public receipts;
-    
     address contractOwner;
     
     function DDNS() public {
@@ -76,23 +68,48 @@ contract DDNS {
     function()public payable { //fallback function
     }
     
-    function register( bytes _domain, bytes4 _ip) public payable AvailableToBuy(_domain) DomainNameRequirements(_domain) PaymentHandler(_domain) {
-        domains.register(_domain, _ip);
+    function register( bytes _domain, bytes4 _ip) public payable AvailableToBuy(_domain) PaymentHandler(_domain) DomainNameRequirements(_domain) {
+        DDNSRegisterer.Domain memory domainObj = domains.domainsInfo[_domain];
+        
+        // bool owned = domainObj.owner == msg.sender;
+        // bool domainStillActive = domainObj.expires > now;
+        
+        if(domainObj.owner == msg.sender && domainObj.expires > now){
+            domains.register(_domain, _ip, domainObj.starts,  domainObj.expires + 1 years);
+            LogDomainRegistered (msg.sender, _domain);
+            return;
+        }
+        
+        domains.register(_domain, _ip, now, now + 1 years);
         LogDomainRegistered (msg.sender, _domain);
     }
     
     function edit(bytes _domain, bytes4 _newIp) public OnlyDomainOwner(_domain) {
-        LogDomainChangeIp(domains.domainsInfo[_domain].ip, _newIp, _domain);
+        bytes4 oldIp = domains.domainsInfo[_domain].ip;
+        
         domains.edit(_domain,_newIp);
+        
+        LogDomainChangeIp(oldIp, _newIp, _domain);
     }
     
     function transferDomain(bytes _domain, address _newOwner) public OnlyDomainOwner(_domain) {
-        LogDomainTransfered(domains.domainsInfo[_domain].owner, _newOwner, _domain);
+        address oldOwner = domains.domainsInfo[_domain].owner;
+        
         domains.transferDomain(_domain, _newOwner);
+        
+        LogDomainTransfered(oldOwner, _newOwner, _domain);
     }
     
     function getIP(bytes _domain) public view returns (bytes4) {
         return domains.getIP(_domain);
+    }
+
+    function getContractOwner() public view returns(address){
+        return contractOwner;
+    }
+    
+    function getDomainOwner(bytes _domain) public view returns(address) {
+        return domains.getDomainOwner(_domain);
     }
     
     function withdraw() public OnlyContractOwner {
@@ -102,47 +119,37 @@ contract DDNS {
     }
     
     function getPrice(bytes _domain) public pure returns (uint) {
-        uint price;
+        uint price = 1 ether;
         if(_domain.length == 5){
             price = 5 ether;
         } else if(5 < _domain.length && _domain.length <= 10){
             price = 2 ether;
         } else if(_domain.length > 10){
             price = 1 ether;
-        } else {
+        } 
+        else {
             revert();
         }
         return price;
     }
-}
 
-library DDNSRegisterer {
-    
-    struct Domain{
-        mapping(bytes => Domain) domainsInfo;
-        mapping(address => Domain[]) ownerDomains;
-        bytes name;
-        bytes4 ip;
-        address owner;
-        uint starts;
-        uint expires;
+    function getDomainStartsDate(bytes _domain) public view returns(uint){
+        return domains.getDomainStartsDate(_domain);
     }
     
-    function register(Domain storage self, bytes _domain, bytes4 _ip) public returns(bool) {
-        self.ownerDomains[msg.sender].push(Domain({name: _domain, ip: _ip, owner: msg.sender, starts: now, expires: now + 1 years }));
-        self.domainsInfo[_domain] = Domain({name: _domain, ip: _ip, owner: msg.sender, starts: now, expires: now + 1 years });
+    function getDomainExpirationDate(bytes _domain) public view returns(uint){
+        return domains.getDomainExpirationDate(_domain);
     }
     
-    function edit(Domain storage self, bytes _domain, bytes4 _newIp) public {
-        self.domainsInfo[_domain].ip = _newIp;
-    }
-    
-    function transferDomain(Domain storage self, bytes _domain, address _newOwner) public {
-        self.domainsInfo[_domain].owner = _newOwner;
-    }
-    
-    function getIP(Domain storage self, bytes _domain) public view returns (bytes4) {
-        return self.domainsInfo[_domain].ip;
-    }
-}
+    // function getOwnerDomains(address _owner) public view returns(DDNSRegisterer.Domain[]){
+    //     return domains.ownersInfo[_owner];
+    // }
 
+    // function geteDomainInfo(bytes _domain) public view returns(DDNSRegisterer.Domain) {
+    //     return domains.domainsInfo[_domain];
+    // }
+    
+    // function getAllReciepts() public view returns(Receipt[]){
+    //     return receipts[msg.sender];
+    // }
+}
