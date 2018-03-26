@@ -11,7 +11,8 @@ contract DDNS is DDNSInterface {
     event LogDomainRegistered (address indexed by, bytes domain);
     event LogDomainTransfered (address indexed from, address to, bytes  domain);
     event LogDomainChangeIp (bytes4 indexed oldIp, bytes4 indexed newIp, bytes domain);
-    event ContractTokensWithdrawn (uint tokensAmmount, uint date);
+    event LogContractTokensWithdrawn (uint tokensAmmount, uint date);
+    event LogFallbackCalled (address by, uint tokensTransRecieved);
     
     modifier AvailableToBuy (bytes _domain) {
         DDNSRegisterer.Domain memory domainData = domains.domainsInfo[_domain];
@@ -66,6 +67,7 @@ contract DDNS is DDNSInterface {
     }
     
     function()public payable { //fallback function
+        LogFallbackCalled(msg.sender, msg.value);
     }
     
     function register( bytes _domain, bytes4 _ip) public payable AvailableToBuy(_domain) PaymentHandler(_domain) DomainNameRequirements(_domain) {
@@ -114,7 +116,7 @@ contract DDNS is DDNSInterface {
     
     function withdraw() public OnlyContractOwner {
         require(address(this).balance > 0);
-        ContractTokensWithdrawn(address(this).balance, now);
+        LogContractTokensWithdrawn(address(this).balance, now);
         msg.sender.transfer(address(this).balance);
     }
     
