@@ -73,9 +73,6 @@ contract DDNS is DDNSInterface {
     function register( bytes _domain, bytes4 _ip) public payable AvailableToBuy(_domain) PaymentHandler(_domain) DomainNameRequirements(_domain) {
         DDNSRegisterer.Domain memory domainObj = domains.domainsInfo[_domain];
         
-        // bool owned = domainObj.owner == msg.sender;
-        // bool domainStillActive = domainObj.expires > now;
-        
         if(domainObj.owner == msg.sender && domainObj.expires > now){
             domains.register(_domain, _ip, domainObj.starts,  domainObj.expires + 1 years);
             LogDomainRegistered (msg.sender, _domain);
