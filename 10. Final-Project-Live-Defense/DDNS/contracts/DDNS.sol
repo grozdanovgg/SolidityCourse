@@ -2,8 +2,9 @@ pragma solidity 0.4.19;
 
 import "./DDNSRegisterer.sol";
 import "./DDNSInterface.sol";
+import "./Ownable.sol";
 
-contract DDNS is DDNSInterface {
+contract DDNS is DDNSInterface, Ownable {
     using DDNSRegisterer for DDNSRegisterer.DomainsData;
     
     DDNSRegisterer.DomainsData domains;
@@ -52,11 +53,6 @@ contract DDNS is DDNSInterface {
     
     modifier OnlyDomainOwner (bytes _domain) {
         require(msg.sender == domains.domainsInfo[_domain].owner);
-        _;
-    }
-    
-    modifier OnlyContractOwner () {
-        require(msg.sender == contractOwner);
         _;
     }
     
