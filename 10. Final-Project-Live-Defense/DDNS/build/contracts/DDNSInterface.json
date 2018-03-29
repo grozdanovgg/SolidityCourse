@@ -139,19 +139,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.4.19;\r\n\r\ncontract DDNSInterface {\r\n    struct Receipt{\r\n        uint amountPaidWei;\r\n        uint timestamp;\r\n        uint expires;\r\n    }\r\n    \r\n    //This will create an automatic getter with 2 arguments: address and index of receipt\r\n    mapping(address => Receipt[]) public receipts;\r\n\r\n    //the domain is bytes, because string is UTF-8 encoded and we cannot get its length\r\n    //the IP is bytes4 because it is more efficient in storing the sequence\r\n    function register(bytes domain, bytes4 ip) public payable;\r\n    \r\n    function edit(bytes domain, bytes4 newIp) public;\r\n    \r\n    function transferDomain(bytes domain, address newOwner) public;\r\n    \r\n    function getIP(bytes domain) public view returns (bytes4);\r\n    \r\n    function getPrice(bytes domain) public pure returns (uint);\r\n\r\n    //function for the optional requirement for a withdraw function. Implement if you want.\r\n    function withdraw() public;\r\n}",
-  "sourcePath": "C:\\Users\\grozd\\Desktop\\SOLIDITY\\solidiy truffle\\DDNS\\contracts\\DDNSInterface.sol",
+  "sourcePath": "C:\\Users\\grozd\\Desktop\\SolidityCourse\\10. Final-Project-Live-Defense\\DDNS\\contracts\\DDNSInterface.sol",
   "ast": {
-    "absolutePath": "/C/Users/grozd/Desktop/SOLIDITY/solidiy truffle/DDNS/contracts/DDNSInterface.sol",
+    "absolutePath": "/C/Users/grozd/Desktop/SolidityCourse/10. Final-Project-Live-Defense/DDNS/contracts/DDNSInterface.sol",
     "exportedSymbols": {
       "DDNSInterface": [
-        565
+        568
       ]
     },
-    "id": 566,
+    "id": 569,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 514,
+        "id": 517,
         "literals": [
           "solidity",
           "0.4",
@@ -166,23 +166,23 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 565,
+        "id": 568,
         "linearizedBaseContracts": [
-          565
+          568
         ],
         "name": "DDNSInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "DDNSInterface.Receipt",
-            "id": 521,
+            "id": 524,
             "members": [
               {
                 "constant": false,
-                "id": 516,
+                "id": 519,
                 "name": "amountPaidWei",
                 "nodeType": "VariableDeclaration",
-                "scope": 521,
+                "scope": 524,
                 "src": "82:18:1",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -191,7 +191,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 515,
+                  "id": 518,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "82:4:1",
@@ -205,10 +205,10 @@
               },
               {
                 "constant": false,
-                "id": 518,
+                "id": 521,
                 "name": "timestamp",
                 "nodeType": "VariableDeclaration",
-                "scope": 521,
+                "scope": 524,
                 "src": "111:14:1",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -217,7 +217,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 517,
+                  "id": 520,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "111:4:1",
@@ -231,10 +231,10 @@
               },
               {
                 "constant": false,
-                "id": 520,
+                "id": 523,
                 "name": "expires",
                 "nodeType": "VariableDeclaration",
-                "scope": 521,
+                "scope": 524,
                 "src": "136:12:1",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -243,7 +243,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 519,
+                  "id": 522,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "136:4:1",
@@ -258,27 +258,27 @@
             ],
             "name": "Receipt",
             "nodeType": "StructDefinition",
-            "scope": 565,
+            "scope": 568,
             "src": "57:99:1",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 526,
+            "id": 529,
             "name": "receipts",
             "nodeType": "VariableDeclaration",
-            "scope": 565,
+            "scope": 568,
             "src": "259:45:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Receipt_$521_storage_$dyn_storage_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Receipt_$524_storage_$dyn_storage_$",
               "typeString": "mapping(address => struct DDNSInterface.Receipt storage ref[] storage ref)"
             },
             "typeName": {
-              "id": 525,
+              "id": 528,
               "keyType": {
-                "id": 522,
+                "id": 525,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "267:7:1",
@@ -290,28 +290,28 @@
               "nodeType": "Mapping",
               "src": "259:29:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Receipt_$521_storage_$dyn_storage_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Receipt_$524_storage_$dyn_storage_$",
                 "typeString": "mapping(address => struct DDNSInterface.Receipt storage ref[] storage ref)"
               },
               "valueType": {
                 "baseType": {
                   "contractScope": null,
-                  "id": 523,
+                  "id": 526,
                   "name": "Receipt",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 521,
+                  "referencedDeclaration": 524,
                   "src": "278:7:1",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Receipt_$521_storage_ptr",
+                    "typeIdentifier": "t_struct$_Receipt_$524_storage_ptr",
                     "typeString": "struct DDNSInterface.Receipt storage pointer"
                   }
                 },
-                "id": 524,
+                "id": 527,
                 "length": null,
                 "nodeType": "ArrayTypeName",
                 "src": "278:9:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Receipt_$521_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Receipt_$524_storage_$dyn_storage_ptr",
                   "typeString": "struct DDNSInterface.Receipt storage ref[] storage pointer"
                 }
               }
@@ -321,7 +321,7 @@
           },
           {
             "body": null,
-            "id": 533,
+            "id": 536,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -329,15 +329,15 @@
             "name": "register",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 531,
+              "id": 534,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 528,
+                  "id": 531,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 533,
+                  "scope": 536,
                   "src": "497:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -346,7 +346,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 527,
+                    "id": 530,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "497:5:1",
@@ -360,10 +360,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 530,
+                  "id": 533,
                   "name": "ip",
                   "nodeType": "VariableDeclaration",
-                  "scope": 533,
+                  "scope": 536,
                   "src": "511:9:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -372,7 +372,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 529,
+                    "id": 532,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "511:6:1",
@@ -389,12 +389,12 @@
             },
             "payable": true,
             "returnParameters": {
-              "id": 532,
+              "id": 535,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "536:0:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "479:58:1",
             "stateMutability": "payable",
             "superFunction": null,
@@ -402,7 +402,7 @@
           },
           {
             "body": null,
-            "id": 540,
+            "id": 543,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -410,15 +410,15 @@
             "name": "edit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 538,
+              "id": 541,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 535,
+                  "id": 538,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 540,
+                  "scope": 543,
                   "src": "563:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -427,7 +427,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 534,
+                    "id": 537,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "563:5:1",
@@ -441,10 +441,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 537,
+                  "id": 540,
                   "name": "newIp",
                   "nodeType": "VariableDeclaration",
-                  "scope": 540,
+                  "scope": 543,
                   "src": "577:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -453,7 +453,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 536,
+                    "id": 539,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "577:6:1",
@@ -470,12 +470,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 539,
+              "id": 542,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "597:0:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "549:49:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -483,7 +483,7 @@
           },
           {
             "body": null,
-            "id": 547,
+            "id": 550,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -491,15 +491,15 @@
             "name": "transferDomain",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 545,
+              "id": 548,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 542,
+                  "id": 545,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 547,
+                  "scope": 550,
                   "src": "634:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -508,7 +508,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 541,
+                    "id": 544,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "634:5:1",
@@ -522,10 +522,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 544,
+                  "id": 547,
                   "name": "newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 547,
+                  "scope": 550,
                   "src": "648:16:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -534,7 +534,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 543,
+                    "id": 546,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "648:7:1",
@@ -551,12 +551,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 546,
+              "id": 549,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "672:0:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "610:63:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -564,7 +564,7 @@
           },
           {
             "body": null,
-            "id": 554,
+            "id": 557,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -572,15 +572,15 @@
             "name": "getIP",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 550,
+              "id": 553,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 549,
+                  "id": 552,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 554,
+                  "scope": 557,
                   "src": "700:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -589,7 +589,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 548,
+                    "id": 551,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "700:5:1",
@@ -606,15 +606,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 553,
+              "id": 556,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 552,
+                  "id": 555,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 554,
+                  "scope": 557,
                   "src": "735:6:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -623,7 +623,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 551,
+                    "id": 554,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "735:6:1",
@@ -638,7 +638,7 @@
               ],
               "src": "734:8:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "685:58:1",
             "stateMutability": "view",
             "superFunction": null,
@@ -646,7 +646,7 @@
           },
           {
             "body": null,
-            "id": 561,
+            "id": 564,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -654,15 +654,15 @@
             "name": "getPrice",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 557,
+              "id": 560,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 556,
+                  "id": 559,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 561,
+                  "scope": 564,
                   "src": "773:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -671,7 +671,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 555,
+                    "id": 558,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "773:5:1",
@@ -688,15 +688,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 560,
+              "id": 563,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 559,
+                  "id": 562,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 561,
+                  "scope": 564,
                   "src": "808:4:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -705,7 +705,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 558,
+                    "id": 561,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "808:4:1",
@@ -720,7 +720,7 @@
               ],
               "src": "807:6:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "755:59:1",
             "stateMutability": "pure",
             "superFunction": null,
@@ -728,7 +728,7 @@
           },
           {
             "body": null,
-            "id": 564,
+            "id": 567,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -736,43 +736,43 @@
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 562,
+              "id": 565,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "932:2:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 563,
+              "id": 566,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "941:0:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "915:27:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 566,
+        "scope": 569,
         "src": "27:918:1"
       }
     ],
     "src": "0:945:1"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/grozd/Desktop/SOLIDITY/solidiy truffle/DDNS/contracts/DDNSInterface.sol",
+    "absolutePath": "/C/Users/grozd/Desktop/SolidityCourse/10. Final-Project-Live-Defense/DDNS/contracts/DDNSInterface.sol",
     "exportedSymbols": {
       "DDNSInterface": [
-        565
+        568
       ]
     },
-    "id": 566,
+    "id": 569,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 514,
+        "id": 517,
         "literals": [
           "solidity",
           "0.4",
@@ -787,23 +787,23 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 565,
+        "id": 568,
         "linearizedBaseContracts": [
-          565
+          568
         ],
         "name": "DDNSInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "DDNSInterface.Receipt",
-            "id": 521,
+            "id": 524,
             "members": [
               {
                 "constant": false,
-                "id": 516,
+                "id": 519,
                 "name": "amountPaidWei",
                 "nodeType": "VariableDeclaration",
-                "scope": 521,
+                "scope": 524,
                 "src": "82:18:1",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -812,7 +812,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 515,
+                  "id": 518,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "82:4:1",
@@ -826,10 +826,10 @@
               },
               {
                 "constant": false,
-                "id": 518,
+                "id": 521,
                 "name": "timestamp",
                 "nodeType": "VariableDeclaration",
-                "scope": 521,
+                "scope": 524,
                 "src": "111:14:1",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -838,7 +838,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 517,
+                  "id": 520,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "111:4:1",
@@ -852,10 +852,10 @@
               },
               {
                 "constant": false,
-                "id": 520,
+                "id": 523,
                 "name": "expires",
                 "nodeType": "VariableDeclaration",
-                "scope": 521,
+                "scope": 524,
                 "src": "136:12:1",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -864,7 +864,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 519,
+                  "id": 522,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "136:4:1",
@@ -879,27 +879,27 @@
             ],
             "name": "Receipt",
             "nodeType": "StructDefinition",
-            "scope": 565,
+            "scope": 568,
             "src": "57:99:1",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 526,
+            "id": 529,
             "name": "receipts",
             "nodeType": "VariableDeclaration",
-            "scope": 565,
+            "scope": 568,
             "src": "259:45:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Receipt_$521_storage_$dyn_storage_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Receipt_$524_storage_$dyn_storage_$",
               "typeString": "mapping(address => struct DDNSInterface.Receipt storage ref[] storage ref)"
             },
             "typeName": {
-              "id": 525,
+              "id": 528,
               "keyType": {
-                "id": 522,
+                "id": 525,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "267:7:1",
@@ -911,28 +911,28 @@
               "nodeType": "Mapping",
               "src": "259:29:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Receipt_$521_storage_$dyn_storage_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Receipt_$524_storage_$dyn_storage_$",
                 "typeString": "mapping(address => struct DDNSInterface.Receipt storage ref[] storage ref)"
               },
               "valueType": {
                 "baseType": {
                   "contractScope": null,
-                  "id": 523,
+                  "id": 526,
                   "name": "Receipt",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 521,
+                  "referencedDeclaration": 524,
                   "src": "278:7:1",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Receipt_$521_storage_ptr",
+                    "typeIdentifier": "t_struct$_Receipt_$524_storage_ptr",
                     "typeString": "struct DDNSInterface.Receipt storage pointer"
                   }
                 },
-                "id": 524,
+                "id": 527,
                 "length": null,
                 "nodeType": "ArrayTypeName",
                 "src": "278:9:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Receipt_$521_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Receipt_$524_storage_$dyn_storage_ptr",
                   "typeString": "struct DDNSInterface.Receipt storage ref[] storage pointer"
                 }
               }
@@ -942,7 +942,7 @@
           },
           {
             "body": null,
-            "id": 533,
+            "id": 536,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -950,15 +950,15 @@
             "name": "register",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 531,
+              "id": 534,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 528,
+                  "id": 531,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 533,
+                  "scope": 536,
                   "src": "497:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -967,7 +967,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 527,
+                    "id": 530,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "497:5:1",
@@ -981,10 +981,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 530,
+                  "id": 533,
                   "name": "ip",
                   "nodeType": "VariableDeclaration",
-                  "scope": 533,
+                  "scope": 536,
                   "src": "511:9:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -993,7 +993,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 529,
+                    "id": 532,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "511:6:1",
@@ -1010,12 +1010,12 @@
             },
             "payable": true,
             "returnParameters": {
-              "id": 532,
+              "id": 535,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "536:0:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "479:58:1",
             "stateMutability": "payable",
             "superFunction": null,
@@ -1023,7 +1023,7 @@
           },
           {
             "body": null,
-            "id": 540,
+            "id": 543,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1031,15 +1031,15 @@
             "name": "edit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 538,
+              "id": 541,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 535,
+                  "id": 538,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 540,
+                  "scope": 543,
                   "src": "563:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1048,7 +1048,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 534,
+                    "id": 537,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "563:5:1",
@@ -1062,10 +1062,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 537,
+                  "id": 540,
                   "name": "newIp",
                   "nodeType": "VariableDeclaration",
-                  "scope": 540,
+                  "scope": 543,
                   "src": "577:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1074,7 +1074,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 536,
+                    "id": 539,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "577:6:1",
@@ -1091,12 +1091,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 539,
+              "id": 542,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "597:0:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "549:49:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1104,7 +1104,7 @@
           },
           {
             "body": null,
-            "id": 547,
+            "id": 550,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1112,15 +1112,15 @@
             "name": "transferDomain",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 545,
+              "id": 548,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 542,
+                  "id": 545,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 547,
+                  "scope": 550,
                   "src": "634:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1129,7 +1129,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 541,
+                    "id": 544,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "634:5:1",
@@ -1143,10 +1143,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 544,
+                  "id": 547,
                   "name": "newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 547,
+                  "scope": 550,
                   "src": "648:16:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1155,7 +1155,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 543,
+                    "id": 546,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "648:7:1",
@@ -1172,12 +1172,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 546,
+              "id": 549,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "672:0:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "610:63:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1185,7 +1185,7 @@
           },
           {
             "body": null,
-            "id": 554,
+            "id": 557,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -1193,15 +1193,15 @@
             "name": "getIP",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 550,
+              "id": 553,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 549,
+                  "id": 552,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 554,
+                  "scope": 557,
                   "src": "700:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1210,7 +1210,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 548,
+                    "id": 551,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "700:5:1",
@@ -1227,15 +1227,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 553,
+              "id": 556,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 552,
+                  "id": 555,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 554,
+                  "scope": 557,
                   "src": "735:6:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1244,7 +1244,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 551,
+                    "id": 554,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "735:6:1",
@@ -1259,7 +1259,7 @@
               ],
               "src": "734:8:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "685:58:1",
             "stateMutability": "view",
             "superFunction": null,
@@ -1267,7 +1267,7 @@
           },
           {
             "body": null,
-            "id": 561,
+            "id": 564,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -1275,15 +1275,15 @@
             "name": "getPrice",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 557,
+              "id": 560,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 556,
+                  "id": 559,
                   "name": "domain",
                   "nodeType": "VariableDeclaration",
-                  "scope": 561,
+                  "scope": 564,
                   "src": "773:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1292,7 +1292,7 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 555,
+                    "id": 558,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "773:5:1",
@@ -1309,15 +1309,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 560,
+              "id": 563,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 559,
+                  "id": 562,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 561,
+                  "scope": 564,
                   "src": "808:4:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1326,7 +1326,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 558,
+                    "id": 561,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "808:4:1",
@@ -1341,7 +1341,7 @@
               ],
               "src": "807:6:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "755:59:1",
             "stateMutability": "pure",
             "superFunction": null,
@@ -1349,7 +1349,7 @@
           },
           {
             "body": null,
-            "id": 564,
+            "id": 567,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1357,26 +1357,26 @@
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 562,
+              "id": 565,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "932:2:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 563,
+              "id": 566,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "941:0:1"
             },
-            "scope": 565,
+            "scope": 568,
             "src": "915:27:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 566,
+        "scope": 569,
         "src": "27:918:1"
       }
     ],
@@ -1388,5 +1388,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-03-25T23:40:25.735Z"
+  "updatedAt": "2018-03-29T05:58:48.842Z"
 }

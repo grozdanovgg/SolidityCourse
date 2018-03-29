@@ -13,7 +13,7 @@
 #### Optional Tasks:
 
 - **DONE (5%) (lecture 5)** Use **contract events** to signify that an activity has taken place in your contract. Events can be for domain registration / transfer for example.
-- **(20%) (lecture 8)** Create a basic website with MetaMask that connects to a contract (published in a test net or local blockchain). The application should allow **at least one** operation with the contract (Domain registration or Store purchase are examples).
+- **(20%) (lecture 8)** (Get ABI and bytecode from with "truffle deploy") Create a basic website with MetaMask that connects to a contract (published in a test net or local blockchain). The application should allow **at least one** operation with the contract (Domain registration or Store purchase are examples).
 - **DONE (5%) (lecture 6)** Dynamic pricing. For DDNS, the base price can increase if a short domain name is bought.
 - **DONE (5%) (lecture 6)** Public method to withdraw the funds from the contract. **This should be called only from the contract owner** (the address which initially created the contract).
 

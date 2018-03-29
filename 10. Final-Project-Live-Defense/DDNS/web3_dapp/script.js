@@ -10,106 +10,6 @@ window.onload = function() {
 var contractInstance;
 
 var abi = [{
-        "constant": false,
-        "inputs": [{
-                "name": "_domain",
-                "type": "bytes"
-            },
-            {
-                "name": "_newIp",
-                "type": "bytes4"
-            }
-        ],
-        "name": "edit",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [{
-            "name": "_domain",
-            "type": "bytes"
-        }],
-        "name": "getDomainExpirationDate",
-        "outputs": [{
-            "name": "",
-            "type": "uint256"
-        }],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [],
-        "name": "withdraw",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "getContractOwner",
-        "outputs": [{
-            "name": "",
-            "type": "address"
-        }],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [{
-            "name": "_domain",
-            "type": "bytes"
-        }],
-        "name": "getPrice",
-        "outputs": [{
-            "name": "",
-            "type": "uint256"
-        }],
-        "payable": false,
-        "stateMutability": "pure",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [{
-            "name": "_domain",
-            "type": "bytes"
-        }],
-        "name": "getDomainStartsDate",
-        "outputs": [{
-            "name": "",
-            "type": "uint256"
-        }],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [{
-                "name": "_domain",
-                "type": "bytes"
-            },
-            {
-                "name": "_newOwner",
-                "type": "address"
-            }
-        ],
-        "name": "transferDomain",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "constant": true,
         "inputs": [{
                 "name": "",
@@ -140,55 +40,8 @@ var abi = [{
     },
     {
         "constant": true,
-        "inputs": [{
-            "name": "_domain",
-            "type": "bytes"
-        }],
-        "name": "getIP",
-        "outputs": [{
-            "name": "",
-            "type": "bytes4"
-        }],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
         "inputs": [],
         "name": "contractOwner",
-        "outputs": [{
-            "name": "",
-            "type": "address"
-        }],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [{
-                "name": "_domain",
-                "type": "bytes"
-            },
-            {
-                "name": "_ip",
-                "type": "bytes4"
-            }
-        ],
-        "name": "register",
-        "outputs": [],
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [{
-            "name": "_domain",
-            "type": "bytes"
-        }],
-        "name": "getDomainOwner",
         "outputs": [{
             "name": "",
             "type": "address"
@@ -325,10 +178,157 @@ var abi = [{
         ],
         "name": "OwnershipTransferred",
         "type": "event"
+    },
+    {
+        "constant": false,
+        "inputs": [{
+                "name": "_domain",
+                "type": "bytes"
+            },
+            {
+                "name": "_ip",
+                "type": "bytes4"
+            }
+        ],
+        "name": "register",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [{
+                "name": "_domain",
+                "type": "bytes"
+            },
+            {
+                "name": "_newIp",
+                "type": "bytes4"
+            }
+        ],
+        "name": "edit",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [{
+                "name": "_domain",
+                "type": "bytes"
+            },
+            {
+                "name": "_newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "transferDomain",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [{
+            "name": "_domain",
+            "type": "bytes"
+        }],
+        "name": "getIP",
+        "outputs": [{
+            "name": "",
+            "type": "bytes4"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getContractOwner",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [{
+            "name": "_domain",
+            "type": "bytes"
+        }],
+        "name": "getDomainOwner",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "withdraw",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [{
+            "name": "_domain",
+            "type": "bytes"
+        }],
+        "name": "getPrice",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "pure",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [{
+            "name": "_domain",
+            "type": "bytes"
+        }],
+        "name": "getDomainStartsDate",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [{
+            "name": "_domain",
+            "type": "bytes"
+        }],
+        "name": "getDomainExpirationDate",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
     }
 ];
 
-var address = "0x8cdaf0cd259887258bc13a92c0a6da92698644c0";
+var address = "0xf25186b5081ff5ce73482ad761db0eb0d25abfbf";
 var acc;
 
 function init() {
