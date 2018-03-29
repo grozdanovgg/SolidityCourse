@@ -1,0 +1,13 @@
+.cards-wrapper  {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+.action-card {
+    width: 500px;
+    align-self: flex-start;
+    padding: 1rem;
+    margin: 1rem;
+}

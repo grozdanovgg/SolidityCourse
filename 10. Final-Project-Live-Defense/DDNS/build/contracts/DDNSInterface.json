@@ -139,9 +139,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.4.19;\r\n\r\ncontract DDNSInterface {\r\n    struct Receipt{\r\n        uint amountPaidWei;\r\n        uint timestamp;\r\n        uint expires;\r\n    }\r\n    \r\n    //This will create an automatic getter with 2 arguments: address and index of receipt\r\n    mapping(address => Receipt[]) public receipts;\r\n\r\n    //the domain is bytes, because string is UTF-8 encoded and we cannot get its length\r\n    //the IP is bytes4 because it is more efficient in storing the sequence\r\n    function register(bytes domain, bytes4 ip) public payable;\r\n    \r\n    function edit(bytes domain, bytes4 newIp) public;\r\n    \r\n    function transferDomain(bytes domain, address newOwner) public;\r\n    \r\n    function getIP(bytes domain) public view returns (bytes4);\r\n    \r\n    function getPrice(bytes domain) public pure returns (uint);\r\n\r\n    //function for the optional requirement for a withdraw function. Implement if you want.\r\n    function withdraw() public;\r\n}",
-  "sourcePath": "C:\\Users\\grozd\\Desktop\\SolidityCourse\\10. Final-Project-Live-Defense\\DDNS\\contracts\\DDNSInterface.sol",
+  "sourcePath": "C:\\Users\\grozdanov\\Desktop\\sol\\SolidityCourse\\10. Final-Project-Live-Defense\\DDNS\\contracts\\DDNSInterface.sol",
   "ast": {
-    "absolutePath": "/C/Users/grozd/Desktop/SolidityCourse/10. Final-Project-Live-Defense/DDNS/contracts/DDNSInterface.sol",
+    "absolutePath": "/C/Users/grozdanov/Desktop/sol/SolidityCourse/10. Final-Project-Live-Defense/DDNS/contracts/DDNSInterface.sol",
     "exportedSymbols": {
       "DDNSInterface": [
         568
@@ -762,7 +762,7 @@
     "src": "0:945:1"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/grozd/Desktop/SolidityCourse/10. Final-Project-Live-Defense/DDNS/contracts/DDNSInterface.sol",
+    "absolutePath": "/C/Users/grozdanov/Desktop/sol/SolidityCourse/10. Final-Project-Live-Defense/DDNS/contracts/DDNSInterface.sol",
     "exportedSymbols": {
       "DDNSInterface": [
         568
@@ -1388,5 +1388,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-03-29T05:58:48.842Z"
+  "updatedAt": "2018-03-29T07:41:58.807Z"
 }

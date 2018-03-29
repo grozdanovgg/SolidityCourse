@@ -1,17 +1,115 @@
 <html>
-	<head>
-		<script type="text/javascript" src="script.js"></script>
-	</head>
 
-	<body>
-	<p id="message">Hello!</p><br>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.amber-lime.min.css">
 
-	<input type="text" id="input"><br>
-	<br>
-	<input type="button" onclick="onButtonPressed()" value="Submit"><br>
-	<br>
-	<input type="button" onclick="onSecondButtonPressed()" value="Read"><br>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+	<h1 id="message">Hello!</h1>
+	<div class="cards-wrapper">
+		<div class="action-card mdl-card mdl-shadow--2dp">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text">Register domain</h2>
+			</div>
+			<!-- <div class="mdl-card__supporting-text">
+				You can register new domain if the name is not already taken.</br>
+				</br>
+				Registration is valid for 1 year. If you are the owner of the domain and try to registster the same domain again, you will
+				extend your registration by 1 year.</br>
+				</br>
+				Short domain up to 5 symbols cost 5 ETH.</br>
+				</br>
+				Medium domain (6 - 10 symbols) cost 2 ETH.</br>
+				</br>
+				Long domain (>11 symbols) cost 1 EHT.
+				<br>
+				<br>
+				<strong>If value contains only numbers,</br>
+					then it must be passed as a string!</strong>
+			</div> -->
+			<div class="mdl-card__actions mdl-card--border">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="input-domain">
+					<label class="mdl-textfield__label" for="input-domain">Domain name</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="input-ip">
+					<label class="mdl-textfield__label" for="input-ip">Domain IP</label>
+				</div>
+				<button onclick="registerDomain()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+					Register
+				</button>
+			</div>
+		</div>
 
 
-	</body>
+		<div class="action-card mdl-card mdl-shadow--2dp">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text">Get IP of Domain</h2>
+			</div>
+			<div class="mdl-card__actions mdl-card--border">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="input-ip-get">
+					<label class="mdl-textfield__label" for="input-ip-get">Domain name</label>
+				</div>
+				<button onclick="getIP()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+					get IP
+				</button>
+			</div>
+		</div>
+
+
+
+		<div class="action-card mdl-card mdl-shadow--2dp">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text">Transfer domain</h2>
+			</div>
+			<div class="mdl-card__actions mdl-card--border">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="input-transfer-domain">
+					<label class="mdl-textfield__label" for="input-transfer-domain">Domain</label>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="input-transfer-owner">
+					<label class="mdl-textfield__label" for="input-transfer-owner">New owner</label>
+				</div>
+				<button onclick="transferDomain()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+					Transfer
+				</button>
+			</div>
+		</div>
+
+
+		<div class="action-card mdl-card mdl-shadow--2dp">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text">Get price</h2>
+			</div>
+			<div class="mdl-card__actions mdl-card--border">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="input-price-domain">
+					<label class="mdl-textfield__label" for="input-price-domain">Domain</label>
+				</div>
+				<button onclick="getPrice()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+					Get price
+				</button>
+			</div>
+		</div>
+
+
+	</div>
+
+	<div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
+		<div class="mdl-snackbar__text"></div>
+		<button class="mdl-snackbar__action" type="button"></button>
+	</div>
+
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+
 </html>
