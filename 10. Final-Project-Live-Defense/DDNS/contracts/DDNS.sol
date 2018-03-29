@@ -56,8 +56,6 @@ contract DDNS is DDNSInterface, Ownable {
         _;
     }
     
-    address contractOwner;
-    
     function DDNS() public {
         contractOwner = msg.sender;
     }
