@@ -14,7 +14,7 @@
 12. open ./web3_dapp/script.js file
 13. find "var abi = " and paste the value;
 14. find "var address = " and paste the value saved before "DDNS: " as  a string
-15. install Google hrome
+15. open Google chrome
 16. Install MetaMask extension
 17. open MetaMask
 18. click in Restore from phrase

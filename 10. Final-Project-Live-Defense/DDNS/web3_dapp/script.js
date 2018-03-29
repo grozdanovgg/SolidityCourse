@@ -384,6 +384,9 @@ function registerDomain() {
 
     var domainName = document.getElementById("input-domain").value.toString();
     var domainIp = document.getElementById("input-ip").value.toString();
+
+    console.log(domainName)
+    console.log(domainIp)
     var price = web3.toWei(1, "ether");
     if (domainName.length > 0 && domainName.length <= 5) {
         price = web3.toWei(5, "ether");
@@ -394,6 +397,8 @@ function registerDomain() {
     } else {
         throw Error("Something went wrong");
     }
+    console.log(price)
+    console.log(acc)
     contractInstance.register(domainName, domainIp, { "from": acc, "value": price }, function (err, res) {
         if (!err) {
             displayMessage("Registration/Extension domain: " + domainName + " successful! ");
@@ -458,4 +463,9 @@ function displayMessage(_message) {
         message: _message,
         timeout: 5000,
     });
+}
+
+function updateAccount() {
+    //in metamask, the accounts array is of size 1 and only contains the currently selected account. The user can select a different account and so we need to update our account variable
+    acc = web3.eth.accounts[0];
 }
